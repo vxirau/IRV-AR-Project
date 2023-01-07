@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.4439403, g: 0.4931519, b: 0.5722083, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -923,9 +923,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2938455111054574428, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
+      propertyPath: flag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938455111054574428, guid: 35757a61b5596b04cbba92e9900c8bdf,
+        type: 3}
       propertyPath: health
       value: 100000
       objectReference: {fileID: 0}
+    - target: {fileID: 2938455111054574428, guid: 35757a61b5596b04cbba92e9900c8bdf,
+        type: 3}
+      propertyPath: spooky
+      value: 
+      objectReference: {fileID: 2143383093}
     - target: {fileID: 2938455111054574428, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: hitsound
@@ -934,7 +944,12 @@ PrefabInstance:
     - target: {fileID: 2938455111054574428, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938455111054574428, guid: 35757a61b5596b04cbba92e9900c8bdf,
+        type: 3}
+      propertyPath: currentHealth
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2938455111054574428, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
@@ -1131,16 +1146,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decider: 1
-  health: 5
   lifeBar: {fileID: 0}
   hasLifeBar: 0
   flag: 0
+  currentHealth: 0
+  totalHealth: 12
   initialpos: 0
   hitsound: {fileID: 1093811189}
   explosiontime: {fileID: 5134042110138392507, guid: f2cd328ca99639d4db0387a62f79a025,
     type: 3}
-  gameUIcontroller: {fileID: 0}
+  spooky: {fileID: 0}
   isArcade: 0
+  respawnCooldown: 0
+  counter: 0
+  previousArrow: {fileID: 0}
+  arrows: []
+  index: 0
+  isFirst: 1
 --- !u!64 &423678997
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1938,16 +1960,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decider: 1
-  health: 5
   lifeBar: {fileID: 0}
   hasLifeBar: 0
   flag: 0
+  currentHealth: 0
+  totalHealth: 12
   initialpos: 0
   hitsound: {fileID: 1093811189}
   explosiontime: {fileID: 5134042110138392507, guid: f2cd328ca99639d4db0387a62f79a025,
     type: 3}
-  gameUIcontroller: {fileID: 0}
+  spooky: {fileID: 0}
   isArcade: 0
+  respawnCooldown: 0
+  counter: 0
+  previousArrow: {fileID: 0}
+  arrows: []
+  index: 0
+  isFirst: 1
 --- !u!64 &846933982
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1983,7 +2012,7 @@ MeshCollider:
   m_GameObject: {fileID: 864844713}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -2001,7 +2030,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 407406888}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864844713}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6def569c419fca4cbe0921cdcdcd56e, type: 3}
   m_Name: 
@@ -3169,9 +3198,7 @@ GameObject:
   - component: {fileID: 1345953948}
   - component: {fileID: 1345953947}
   - component: {fileID: 1345953946}
-  - component: {fileID: 1345953945}
-  - component: {fileID: 1345953950}
-  - component: {fileID: 1345953949}
+  - component: {fileID: 1345953951}
   m_Layer: 0
   m_Name: ImageTarget
   m_TagString: Untagged
@@ -3179,25 +3206,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1345953945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345953944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 1345953947}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: diana_scaled
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 1345953947}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &1345953946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3316,7 +3324,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1345953945}
+  mPreview: {fileID: 1345953951}
 --- !u!4 &1345953948
 Transform:
   m_ObjectHideFlags: 0
@@ -3325,7 +3333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345953944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 175, y: 210, z: 6899}
+  m_LocalPosition: {x: 175, y: 210, z: -8091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3333,21 +3341,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1345953949
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345953944}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7562613056849696430, guid: 08b452f2ffc2db24faab2fc92a59ce3f, type: 3}
---- !u!114 &1345953950
+--- !u!114 &1345953951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3356,19 +3350,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1345953944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6def569c419fca4cbe0921cdcdcd56e, type: 3}
+  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decider: 1
-  health: 100000
-  lifeBar: {fileID: 0}
-  hasLifeBar: 0
-  flag: 0
-  initialpos: 0
-  hitsound: {fileID: 1093811189}
-  explosiontime: {fileID: 0}
-  gameUIcontroller: {fileID: 1703127624}
-  isArcade: 0
+  mObserverBehaviour: {fileID: 1345953947}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: diana_scaled
+  mDatasetName: 
+  mCastedBehaviour: {fileID: 1345953947}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &1354283864
 GameObject:
   m_ObjectHideFlags: 0
@@ -3606,16 +3597,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decider: 1
-  health: 5
   lifeBar: {fileID: 0}
   hasLifeBar: 0
   flag: 0
+  currentHealth: 0
+  totalHealth: 12
   initialpos: 0
   hitsound: {fileID: 1093811189}
   explosiontime: {fileID: 5134042110138392507, guid: f2cd328ca99639d4db0387a62f79a025,
     type: 3}
-  gameUIcontroller: {fileID: 0}
+  spooky: {fileID: 0}
   isArcade: 0
+  respawnCooldown: 0
+  counter: 0
+  previousArrow: {fileID: 0}
+  arrows: []
+  index: 0
+  isFirst: 1
 --- !u!64 &1362167904
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3947,7 +3945,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 35.48
-  field of view: 60
+  field of view: 26.991467
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -5680,6 +5678,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3843495039143418012, guid: 818e39e40888949b9b0332c8997b98e0,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 818e39e40888949b9b0332c8997b98e0, type: 3}
 --- !u!1 &2142896591
@@ -5899,15 +5902,20 @@ MonoBehaviour:
   arrowPrefab: {fileID: 293849519}
   RocketPrefab: {fileID: 355895634}
   arrowLocation: {fileID: 2013581425}
-  openHandSprite: {fileID: 21300000, guid: 51e283a7361b9aa4094ecfc6f08bc45b, type: 3}
-  closedHandSprite: {fileID: 21300000, guid: 9fcf6746bbbcceb4dba913c1384e8e7e, type: 3}
+  openHandSprite: {fileID: 21300000, guid: 48690a285c0354097bdfc72eac250951, type: 3}
+  closedHandSprite: {fileID: 21300000, guid: a95411a99f65f496dae64ce63358d727, type: 3}
   grabflag: 0
+  isPractica: 1
   energybar: {fileID: 1081492361}
-  totalArrows: 0
-  arrowCountText: {fileID: 0}
-  totalRockets: 0
-  rocketCountText: {fileID: 0}
-  gameUIcontroller: {fileID: 0}
+  arrowCountText: {fileID: 251810632}
+  currentArrows: 1
+  currentRockets: 1
+  totalArrows: 1
+  totalRockets: 1
+  currentLevel: 1
+  currentLevelText: {fileID: 251810632}
+  rocketCountText: {fileID: 251810632}
+  gameUIcontroller: {fileID: 1703127624}
   f: 0
 --- !u!1001 &3384375973666759244
 PrefabInstance:
@@ -5919,12 +5927,12 @@ PrefabInstance:
     - target: {fileID: 3384375973210465559, guid: 24ec9aa506080a5429f2d284a6f91c2d,
         type: 3}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3384375973210465559, guid: 24ec9aa506080a5429f2d284a6f91c2d,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3384375973210465775, guid: 24ec9aa506080a5429f2d284a6f91c2d,
         type: 3}

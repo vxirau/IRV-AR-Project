@@ -20,6 +20,7 @@ public class ExampleSpooky : MonoBehaviour
 	[SerializeField]
 	Sprite closedHandSprite;
     public bool grabflag;
+	public bool isPractica;
     public Button energybar;
     public Text arrowCountText;
 
@@ -36,6 +37,7 @@ public class ExampleSpooky : MonoBehaviour
 	public GameUIcontroller gameUIcontroller;
 
     public float f;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -128,8 +130,10 @@ public class ExampleSpooky : MonoBehaviour
 							triggertext.text = "DISPARO!";
 							Instantiate(RocketPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
 							grabflag = false;
-							currentRockets--;
-							rocketCountText.text = currentRockets.ToString();
+							if(!isPractica){
+								currentRockets--;
+								rocketCountText.text = currentRockets.ToString();
+							}
 						}else{
 							triggertext.text = "NO HAY COHETES!";
 						}
@@ -141,8 +145,10 @@ public class ExampleSpooky : MonoBehaviour
 							f = 0;
 							Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
 							triggertext.text = "FLECHA!";
-							currentArrows--;
-							arrowCountText.text = currentArrows.ToString();
+							if(!isPractica){
+								currentArrows--;
+								arrowCountText.text = currentArrows.ToString();
+							}	
 						}else{
 							triggertext.text = "NO HAY FLECHAS!";
 						}
