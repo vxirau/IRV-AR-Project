@@ -88,13 +88,13 @@ public class ExampleSpooky : MonoBehaviour
                     //	spookeyImageHolder.sprite = openHandSprite;
                     //   bow.transform.position = new Vector3(spookeyImageHolder.transform.position.x, spookeyImageHolder.transform.position.y, bow.transform.position.z);
                     grabflag = true;
-                    triggertext.text = "GRABBED";
+                    triggertext.text = "CARGANDO COHETE...";
 					break;
                 case ManoGestureTrigger.RELEASE_GESTURE:
                     // bow.transform.position = new Vector3(spookeyImageHolder.transform.position.x, spookeyImageHolder.transform.position.y, bow.transform.position.z);
                     //   spookeyImageHolder.sprite = closedHandSprite;
                     shotPower = Mathf.Lerp(800, 2800, f);
-                    triggertext.text = "RELEASED";
+                    triggertext.text = "DISPARO!";
                     Instantiate(RocketPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
                     grabflag = false;
 
@@ -107,7 +107,7 @@ public class ExampleSpooky : MonoBehaviour
                     //   bow.transform.position = new Vector3(spookeyImageHolder.transform.position.x, spookeyImageHolder.transform.position.y, bow.transform.position.z);
                     Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
 
-                    triggertext.text = "CLICKED";
+                    triggertext.text = "FLECHA!";
                     break;
                 default:
 					break;
