@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/HOMEui.unity
     guid: 7c45b16a83463814d9ac66dfbe7b79b6
   - enabled: 1
-    path: Assets/ARCADE.unity
+    path: Assets/LEVEL1.unity
     guid: f923f4136f6425749b341bf55beb8958
   - enabled: 0
     path: Assets/PRACTICA.unity
@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PRACTICE.unity
     guid: 7af10f70b5b30294aab9f162060ba1de
+  - enabled: 1
+    path: Assets/LEVEL2.unity
+    guid: 5aa5cc3e9c91a4d7c8ce5328031adee6
+  - enabled: 1
+    path: Assets/GAMEOVER.unity
+    guid: f7047b9585d0e4740a36defc30714c3b
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 5062568c484d2476c8c14b100e0aab61,
       type: 2}

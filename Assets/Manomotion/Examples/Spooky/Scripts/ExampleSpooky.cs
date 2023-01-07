@@ -21,6 +21,20 @@ public class ExampleSpooky : MonoBehaviour
 	Sprite closedHandSprite;
     public bool grabflag;
     public Button energybar;
+    public Text arrowCountText;
+
+	public int currentArrows;
+	public int currentRockets;
+
+	public int totalArrows;
+	public int totalRockets;
+
+	public int currentLevel;
+	 public Text currentLevelText;
+
+    public Text rocketCountText;
+	public GameUIcontroller gameUIcontroller;
+
     public float f;
 	// Use this for initialization
 	void Start()
@@ -73,6 +87,19 @@ public class ExampleSpooky : MonoBehaviour
     {
        
     }
+
+
+	public void newLevel(){
+		currentLevel = currentLevel+1;
+		totalArrows = totalArrows+10;
+		currentArrows = totalArrows;
+		totalRockets = totalRockets+2;
+		currentRockets = totalRockets;
+		rocketCountText.text = currentRockets.ToString();
+		arrowCountText.text = currentArrows.ToString();
+		currentLevelText.text = "Level " + currentLevel.ToString();
+	}
+
 	/// <summary>
 	/// Based on the continuous gesture performed (Open hand or Closed Hand) the ghost will change its appearance
 	/// </summary>
@@ -82,38 +109,50 @@ public class ExampleSpooky : MonoBehaviour
 	{
 		if (warning != Warning.WARNING_HAND_NOT_FOUND)
 		{
-			switch (gesture.mano_gesture_trigger)
-			{
-				case ManoGestureTrigger.GRAB_GESTURE:
-                    //	spookeyImageHolder.sprite = openHandSprite;
-                    //   bow.transform.position = new Vector3(spookeyImageHolder.transform.position.x, spookeyImageHolder.transform.position.y, bow.transform.position.z);
-                    grabflag = true;
-                    triggertext.text = "CARGANDO COHETE...";
-					break;
-                case ManoGestureTrigger.RELEASE_GESTURE:
-                    // bow.transform.position = new Vector3(spookeyImageHolder.transform.position.x, spookeyImageHolder.transform.position.y, bow.transform.position.z);
-                    //   spookeyImageHolder.sprite = closedHandSprite;
-                    shotPower = Mathf.Lerp(800, 2800, f);
-                    triggertext.text = "DISPARO!";
-                    Instantiate(RocketPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
-                    grabflag = false;
+			if(currentRockets == 0 && currentArrows == 0){
+				gameUIcontroller.GameOver();
+			}else{
+				switch (gesture.mano_gesture_trigger)
+				{
+					case ManoGestureTrigger.GRAB_GESTURE:
+						if( currentRockets > 0){
+							grabflag = true;
+							triggertext.text = "CARGANDO COHETE...";
+						}else{
+							triggertext.text = "NO HAY COHETES!";
+						}
+						break;
+					case ManoGestureTrigger.RELEASE_GESTURE:
+						if( currentRockets > 0){
+							shotPower = Mathf.Lerp(800, 2800, f);
+							triggertext.text = "DISPARO!";
+							Instantiate(RocketPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
+							grabflag = false;
+							currentRockets--;
+							rocketCountText.text = currentRockets.ToString();
+						}else{
+							triggertext.text = "NO HAY COHETES!";
+						}
+						break;
+					case ManoGestureTrigger.CLICK:
+						if(currentArrows >0){
+							grabflag = false;
+							shotPower = 2500;
+							f = 0;
+							Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
+							triggertext.text = "FLECHA!";
+							currentArrows--;
+							arrowCountText.text = currentArrows.ToString();
+						}else{
+							triggertext.text = "NO HAY FLECHAS!";
+						}
+						break;
+					default:
+						break;
+						
 
-                    break;
-                case ManoGestureTrigger.CLICK:
-                    grabflag = false;
-                    shotPower = 2500;
-                    f = 0;
-                    //spookeyImageHolder.sprite = openHandSprite;
-                    //   bow.transform.position = new Vector3(spookeyImageHolder.transform.position.x, spookeyImageHolder.transform.position.y, bow.transform.position.z);
-                    Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
-
-                    triggertext.text = "FLECHA!";
-                    break;
-                default:
-					break;
-                    
-
-            }
+				}
+			}
 		}
 	}
 

@@ -21,12 +21,18 @@ public class GameUIcontroller : MonoBehaviour
     }
     public void Arcade()
     {
-        SceneManager.LoadScene("ARCADE");
+        SceneManager.LoadScene("LEVEL1");
 
     }
+
     public void PRACTICE()
     {
         SceneManager.LoadScene("PRACTICE");
+
+    }
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GAMEOVER");
 
     }
     public void exit()
