@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+
 public class ExampleSpooky : MonoBehaviour
 {
 	[SerializeField]
@@ -31,6 +33,9 @@ public class ExampleSpooky : MonoBehaviour
 
 	public int currentLevel;
 	 public Text currentLevelText;
+
+	public UnityEvent newLevelSpeech;
+	public UnityEvent errorSpeech;
 
     public Text rocketCountText;
 	public GameUIcontroller gameUIcontroller;
@@ -97,7 +102,53 @@ public class ExampleSpooky : MonoBehaviour
 		currentRockets = totalRockets;
 		rocketCountText.text = currentRockets.ToString();
 		arrowCountText.text = currentArrows.ToString();
-		currentLevelText.text = "Level " + currentLevel.ToString();
+		currentLevelText.text = "Nivel " + currentLevel.ToString();
+		newLevelSpeech.Invoke();
+	}
+
+
+	public void tirarCohete(){	
+		if(grabflag){
+			if( currentRockets > 0){
+				shotPower = Mathf.Lerp(800, 2800, f);
+				triggertext.text = "DISPARO!";
+				Instantiate(RocketPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
+				grabflag = false;
+				currentRockets--;
+				rocketCountText.text = currentRockets.ToString();
+			}else{
+				triggertext.text = "NO HAY COHETES!";
+				errorSpeech.Invoke();
+			}
+		}else{
+			triggertext.text = "NO ESTA CARGADO!";
+			errorSpeech.Invoke();
+		}
+	}
+
+	public void dispararFlecha(){
+		if(currentArrows >0){
+			grabflag = false;
+			shotPower = 2500;
+			f = 0;
+			Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
+			triggertext.text = "FLECHA!";
+			currentArrows--;
+			arrowCountText.text = currentArrows.ToString();
+		}else{
+			triggertext.text = "NO HAY FLECHAS!";
+			errorSpeech.Invoke();
+		}
+	}
+
+	public void cargarEnergy(){
+		if( currentRockets > 0){
+			grabflag = true;
+			triggertext.text = "CARGANDO COHETE...";
+		}else{
+			triggertext.text = "NO HAY COHETES!";
+			errorSpeech.Invoke();
+		}
 	}
 
 	/// <summary>
@@ -109,43 +160,19 @@ public class ExampleSpooky : MonoBehaviour
 	{
 		if (warning != Warning.WARNING_HAND_NOT_FOUND)
 		{
-			if(currentRockets == 0 && currentArrows == 0){
+			if( (gesture.mano_gesture_trigger == ManoGestureTrigger.GRAB_GESTURE || gesture.mano_gesture_trigger == ManoGestureTrigger.RELEASE_GESTURE || gesture.mano_gesture_trigger == ManoGestureTrigger.CLICK) && (currentRockets == 0 && currentArrows == 0)){
 				gameUIcontroller.GameOver();
 			}else{
 				switch (gesture.mano_gesture_trigger)
 				{
 					case ManoGestureTrigger.GRAB_GESTURE:
-						if( currentRockets > 0){
-							grabflag = true;
-							triggertext.text = "CARGANDO COHETE...";
-						}else{
-							triggertext.text = "NO HAY COHETES!";
-						}
+						cargarEnergy();
 						break;
 					case ManoGestureTrigger.RELEASE_GESTURE:
-						if( currentRockets > 0){
-							shotPower = Mathf.Lerp(800, 2800, f);
-							triggertext.text = "DISPARO!";
-							Instantiate(RocketPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
-							grabflag = false;
-							currentRockets--;
-							rocketCountText.text = currentRockets.ToString();
-						}else{
-							triggertext.text = "NO HAY COHETES!";
-						}
+						tirarCohete();
 						break;
 					case ManoGestureTrigger.CLICK:
-						if(currentArrows >0){
-							grabflag = false;
-							shotPower = 2500;
-							f = 0;
-							Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
-							triggertext.text = "FLECHA!";
-							currentArrows--;
-							arrowCountText.text = currentArrows.ToString();
-						}else{
-							triggertext.text = "NO HAY FLECHAS!";
-						}
+						dispararFlecha();
 						break;
 					default:
 						break;
