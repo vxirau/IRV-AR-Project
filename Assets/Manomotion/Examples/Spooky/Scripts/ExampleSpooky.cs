@@ -22,6 +22,7 @@ public class ExampleSpooky : MonoBehaviour
 	[SerializeField]
 	Sprite closedHandSprite;
     public bool grabflag;
+	public bool isPractica;
     public Button energybar;
     public Text arrowCountText;
 
@@ -41,6 +42,7 @@ public class ExampleSpooky : MonoBehaviour
 	public GameUIcontroller gameUIcontroller;
 
     public float f;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -107,7 +109,7 @@ public class ExampleSpooky : MonoBehaviour
 	}
 
 
-	public void tirarCohete(){	
+	public void tirarCohete(){
 		if(grabflag){
 			if( currentRockets > 0){
 				shotPower = Mathf.Lerp(800, 2800, f);
