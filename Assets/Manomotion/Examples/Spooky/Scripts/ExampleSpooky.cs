@@ -97,15 +97,17 @@ public class ExampleSpooky : MonoBehaviour
 
 
 	public void newLevel(){
-		currentLevel = currentLevel+1;
-		totalArrows = totalArrows+10;
-		currentArrows = totalArrows;
-		totalRockets = totalRockets+2;
-		currentRockets = totalRockets;
-		rocketCountText.text = currentRockets.ToString();
-		arrowCountText.text = currentArrows.ToString();
-		currentLevelText.text = "Nivel " + currentLevel.ToString();
-		newLevelSpeech.Invoke();
+		if(!isPractica){
+			currentLevel = currentLevel+1;
+			totalArrows = totalArrows+10;
+			currentArrows = totalArrows;
+			totalRockets = totalRockets+2;
+			currentRockets = totalRockets;
+			rocketCountText.text = currentRockets.ToString();
+			arrowCountText.text = currentArrows.ToString();
+			currentLevelText.text = "Nivel " + currentLevel.ToString();
+			newLevelSpeech.Invoke();
+		}
 	}
 
 
@@ -116,8 +118,10 @@ public class ExampleSpooky : MonoBehaviour
 				triggertext.text = "DISPARO!";
 				Instantiate(RocketPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
 				grabflag = false;
-				currentRockets--;
-				rocketCountText.text = currentRockets.ToString();
+				if(!isPractica){
+					currentRockets--;
+					rocketCountText.text = currentRockets.ToString();
+				}
 			}else{
 				triggertext.text = "NO HAY COHETES!";
 				errorSpeech.Invoke();
@@ -135,8 +139,10 @@ public class ExampleSpooky : MonoBehaviour
 			f = 0;
 			Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
 			triggertext.text = "FLECHA!";
-			currentArrows--;
-			arrowCountText.text = currentArrows.ToString();
+			if(!isPractica){
+				currentArrows--;
+				arrowCountText.text = currentArrows.ToString();
+			}
 		}else{
 			triggertext.text = "NO HAY FLECHAS!";
 			errorSpeech.Invoke();
