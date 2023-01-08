@@ -938,6 +938,11 @@ PrefabInstance:
       objectReference: {fileID: 2143383093}
     - target: {fileID: 2938455111054574428, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
+      propertyPath: arrowpos
+      value: 
+      objectReference: {fileID: 881193668}
+    - target: {fileID: 2938455111054574428, guid: 35757a61b5596b04cbba92e9900c8bdf,
+        type: 3}
       propertyPath: hitsound
       value: 
       objectReference: {fileID: 1093811189}
@@ -979,67 +984,67 @@ PrefabInstance:
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08
+      value: 0.593
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.004
+      value: -0.797
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5023705
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.49905235
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5009364
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.49762782
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.621
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -89.835
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7907698159332478027, guid: 35757a61b5596b04cbba92e9900c8bdf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.001
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2938455111054574429, guid: 35757a61b5596b04cbba92e9900c8bdf, type: 3}
@@ -1159,6 +1164,7 @@ MonoBehaviour:
   isArcade: 0
   respawnCooldown: 0
   counter: 0
+  arrowpos: {fileID: 0}
   previousArrow: {fileID: 0}
   arrows: []
   index: 0
@@ -1973,6 +1979,7 @@ MonoBehaviour:
   isArcade: 0
   respawnCooldown: 0
   counter: 0
+  arrowpos: {fileID: 0}
   previousArrow: {fileID: 0}
   arrows: []
   index: 0
@@ -2035,6 +2042,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6def569c419fca4cbe0921cdcdcd56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &881193668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1691415498198172, guid: 0407e2fa3a878c544b622f1a5cddbf1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 100998946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &912196463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3201,7 +3214,7 @@ GameObject:
   - component: {fileID: 1345953951}
   m_Layer: 0
   m_Name: ImageTarget
-  m_TagString: Untagged
+  m_TagString: target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3333,7 +3346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345953944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 175, y: 210, z: -8091}
+  m_LocalPosition: {x: -0.07, y: 2.2539, z: 16.265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3610,6 +3623,7 @@ MonoBehaviour:
   isArcade: 0
   respawnCooldown: 0
   counter: 0
+  arrowpos: {fileID: 0}
   previousArrow: {fileID: 0}
   arrows: []
   index: 0
@@ -5914,6 +5928,12 @@ MonoBehaviour:
   totalRockets: 1
   currentLevel: 1
   currentLevelText: {fileID: 251810632}
+  newLevelSpeech:
+    m_PersistentCalls:
+      m_Calls: []
+  errorSpeech:
+    m_PersistentCalls:
+      m_Calls: []
   rocketCountText: {fileID: 251810632}
   gameUIcontroller: {fileID: 1703127624}
   f: 0

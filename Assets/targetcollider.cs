@@ -21,6 +21,7 @@ public class targetcollider : MonoBehaviour
     public bool isArcade;
     public bool respawnCooldown;
     public int counter;
+    public GameObject arrowpos;
 
     public GameObject previousArrow;
 
@@ -37,6 +38,9 @@ public class targetcollider : MonoBehaviour
     void Start()
     {
         initialpos = transform.position.x;
+        if(!flag){
+            transform.position = new Vector3(arrowpos.transform.position.x, arrowpos.transform.position.y, arrowpos.transform.position.z + 10);
+        }
     }
       void OnCollisionEnter(Collision collision)
     {
