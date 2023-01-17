@@ -34,7 +34,6 @@ public class targetcollider : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Destroy(missile);
     }
-    // Start is called before the first frame update
     void Start()
     {
         initialpos = transform.position.x;
@@ -79,7 +78,6 @@ public class targetcollider : MonoBehaviour
             
         }
     }
-    // Update is called once per frame
     void Update()
     {
        
@@ -90,7 +88,6 @@ public class targetcollider : MonoBehaviour
             if (currentHealth > 0)
             {
                 float y = Mathf.PingPong(speed * Time.time, delta);
-                // decider = decider * -1; 
                 Vector3 pos = new Vector3(initialpos + Mathf.Sin(Time.time * 1f) * decider * y, y, transform.position.z);
                 transform.position = pos;
             }
@@ -101,7 +98,6 @@ public class targetcollider : MonoBehaviour
                     var go = Instantiate(explosiontime, this.transform);
                     go.SetActive(true);
                     go.transform.parent = GameObject.FindGameObjectWithTag("Ball").transform;
-                    //Destroy(this.gameObject);
                     respawnCooldown=true;
                     counter=0;
                 }

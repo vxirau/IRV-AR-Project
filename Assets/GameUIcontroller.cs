@@ -7,7 +7,7 @@ public class GameUIcontroller : MonoBehaviour
 {
     bool menuflag;
     public GameObject panel;
-    // Start is called before the first frame update
+
     void Start()
     {
         menuflag = true;
@@ -54,7 +54,6 @@ public class GameUIcontroller : MonoBehaviour
     }
 
     
-    // Update is called once per frame
     void Update()
     {
         

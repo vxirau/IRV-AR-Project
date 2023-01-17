@@ -43,14 +43,10 @@ public class ExampleSpooky : MonoBehaviour
 
     public float f;
 
-	// Use this for initialization
 	void Start()
 	{
         f = 800;
         grabflag = false;
-		//spookeyImageHolder = this.GetComponent<Image>();
-	//	spookeyImageHolder.preserveAspect = true;
-	//	spookyRectTransform = this.GetComponent<RectTransform>();
 		ManomotionManager.OnManoMotionFrameProcessed += HandleManoMotionFrameUpdated;
         if (arrowLocation == null)
             arrowLocation = transform;
@@ -81,13 +77,7 @@ public class ExampleSpooky : MonoBehaviour
 	{
 		if (warning != Warning.WARNING_HAND_NOT_FOUND)
 		{
-         //   spookyRectTransform.position = Camera.main.ViewportToScreenPoint(trackingInfo.palm_center);
-         //   float width = Screen.width * trackingInfo.bounding_box.width;
-         //  float height = Screen.height * trackingInfo.bounding_box.height;
 
-          //  	float size = Mathf.Min(width, height);
-        //    bow.transform.position = trackingInfo.palm_center;
-     //   spookyRectTransform.sizeDelta = new Vector2(size, size);
 		}
 	}
     void EnergyBar()
